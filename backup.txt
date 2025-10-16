@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="en">
+<html>
+<head>
+        <meta charset="utf-8">
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <meta name="description" content="">
+        <meta name="author" content="">
+		<!-- CSS FILES -->        
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+
+        <link href="css/bootstrap-icons.css" rel="stylesheet">
+
+        <link href="css/owl.carousel.min.css" rel="stylesheet">
+
+        <link href="css/owl.theme.default.min.css" rel="stylesheet">
+
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+	    <link href="css/templatemo-medic-care.css" rel="stylesheet">
+              <script src="https://cdn.jsdelivr.net/npm/signature_pad@4.0.0/dist/signature_pad.umd.min.js"></script>
+              <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+              <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+ 
+  
+  
+<title>Tanda Tangan Digital</title>
+<link rel="stylesheet" type="text/css" href="kontrak2.css">
+<style>
+  .justify {
+    text-align: justify;
+  }
+</style>
+	<div><center><img src="fom.jpg" alt="fom" width="240" height="100"></center></div>
+<p align="center">No: 3/ HR-FJM / I / 2025</p>
+<hr>
+</head>
+<body id="top">
+<p><h2 align="center">PERJANJIAN KERJA WAKTU TERTENTU</h2></p>
+<h4><p align="center">Perjanjian Kerja Waktu Tertentu ini dibuat pada , <u><span id="tanggalwaktu"></span></u></p>
+
+<p align="center">Antara :</p> 
+</h4>
+<p><h3 align="center"><u>Pihak Pertama</u></h3></P>
+ <form class="form1" action="">
+      <label for="firstName" class="first-name">Nama :</label>
+      <input type="text" value="Lina Pratiwi"/>		  
+      <label for="firstName" class="first-name">Jabatan :</label>
+       <input type="text" value="Direktur" /> 
+      <label for="lastName" class="last-name">Alamat :</label>
+	  <input type="text" value="Cibarusah Indah 2 Blok E 24 No.13, Cibarusah, Bekasi." />
+      </form>
+	  <p class="justify">Didalam hal ini bertindak untuk dan atas nama <b>PT. Federasi Jaya Mandiri</b>  berkedudukan di Cibarusah Indah 2 Blok E 24 No.13, Cibarusah, Bekasi dan untuk selanjutnya disebut sebagai <u><b>PIHAK PERTAMA</b></u>
+	  </p>
+<p><h3 align="center"><u>Pihak Kedua</u></h3></P>
+ <form class="form1" action="">
+      <label for="firstName" class="first-name">Nama :</label>
+      <input id="firstName" type="text">
+	  
+      <label for="firstName" class="first-name">NIK KTP :</label>
+      <input id="firstName" type="text">
+ 
+      <label for="lastName" class="last-name">Tempat/tanggal lahir :</label>
+      <input id="lastName" type="date">
+
+      <label for="firstName" class="first-name">Umur :</label>
+      <input id="firstName" type="text">
+	  
+	  <label for="firstName" class="first-name">Jenis Kelamin :</label>
+	  <input id="firstName" type="text">
+	  
+	  <label for="firstName" class="first-name">Jabatan :</label>
+      <input id="firstName" type="text">
+	  
+      <label for="job">Nomor Telpon :</label>
+      <input id="job" type="text">     
+	  
+	  <label for="firstName" class="first-name">Alamat :</label>
+      <input id="firstName" type="text">
+    </form>
+	
+<br>
+<h4 align="center">Didalam hal ini bertindak untuk dan atas nama diri sendiri dan untuk selanjutnya disebut <u><b>PIHAK KEDUA</b></u> </h4>
+<br>
+<p class="justify">Berdasarkan kesepakatan dan persetujuan bersama, para pihak dengan ini <b>setuju dan sepakat</b> untuk menandatangani dan mengikatkan diri dalam Perjanjian Kerja Waktu Tertentu dengan syarat-syarat dan ketentuan-ketentuan sebagai berikut :</p>
+
+<p><h3 align="center">Pasal 1</h3></p>
+
+<p class="justify">Jangka waktu Perjanjian  Kerja ini adalah selama  12 ( Dua Belas )  bulan,</p>
+<form class="form1" action="">
+<label for="lastName" class="last-name">Terhitung mulai :</label>
+      <input id="lastName" type="date">
+<label for="lastName" class="last-name">Sampai dengan :</label>
+      <input id="lastName" type="date">	  
+</form>
+<a href="masa_kontrak.jpg" target="_blank">
+<center><button class="tombol">Klik untuk melihat masa kontrak anda</button></center>
+</a>
+<br>
+
+<h3 align="center">Pasal 2 </h3>
+<p class="justify">Pekerja akan bekerja pada   di PT Federasi Jaya Mandiri dengan jabatan sebagai Operator - General Affair.</p>
+<form class="form1" action="">
+<label for="lastName" class="last-name">Departement :</label>
+  <select name="buah" id="buah">
+  <option value="apel" required></option>
+  <option value="apel">IT</option>
+  <option value="pisang">GENERAL AFFAIR</option>
+  <option value="jeruk">PRODUKSI</option>
+  <option value="mangga">MARKETING</option>
+  <option value="mangga">PURCHASING</option>
+  <option value="mangga">ACCOUNTING</option>
+  <option value="mangga">INVENTORY</option>
+  <option value="mangga">QUALITY</option>
+  <option value="mangga">MOLDSHOP</option>
+  <option value="mangga">MAINTENANCE</option>
+  <option value="mangga">PPIC</option>
+  <option value="mangga">QMR</option>
+  <option value="mangga">HRD</option>
+</select>
+<label for="lastName" class="last-name">Jabatan sebagai :</label>
+      <input id="lastName" type="text">
+</form>
+<h3 align="center">Pasal 3 </h3>
+<p class="justify">Tugas, wewenang dan tanggung jawab Karyawan akan diatur secara tersendiri oleh Kepala Departemen yang bersangkutan. Perincian tugas, wewenang dan tanggung jawab ( Job Description ) yang diberikan, akan merupakan bagian yang tidak terpisah dari kontrak kerja ini.</p>
+
+<h3 align="center">Pasal 4 </h3>
+<p class="justify">Jumlah jam dan hari kerja Karyawan adalah 8 ( delapan ) jam per hari dan 5 ( lima ) hari per minggu, atau jadwal yang akan di atur secara tersendiri oleh Kepala Departemen yang bersangkutan dan akan merupakan bagian yang tidak terpisahkan dari kontrak kerja ini. Apabila diperlukan dan diminta oleh pihak Perusahaan, Karyawan bersedia untuk melaksanakan kerja lembur dengan persyaratan yang sesuai dengan kesepakatan dan peraturan Pemerintah yang berlaku. 
+</p>
+
+<h3 align="center">Pasal 5 </h3>
+<p class="justify">Selama bekerja pada masa Perjanjian Kerja ini, Karyawan berhak atas upah yang pengaturannya disepakati sebagai berikut :
+</p> 
+<ol type="a">
+    <li>Upah pokok sebesar  Rp. 5,584,611,- / Bulan</li>
+	<li>Tunjangan hari raya yang dibayarkan kepada PIHAK KEDUA  sesuai dengan kebijakan bagi pekerja waktu tertentu yang berlaku.</li>
+	<li>Perusahaan akan membayar upah pekerja setiap akhir bulan.</li>
+</ol>
+<h3 align="center">Pasal 6 </h3>
+<p class="justify">Karyawan wajib tunduk pada peraturan-peraturan kerja yang dikeluarkan oleh Perusahaan dan/ atau pimpinan/ atasan langsung Karyawan, baik secara tertulis maupun lisan.</p>
+<ol type="a">
+    <li>PIHAK KEDUA wajib melaksanakan segala ketentuan sebagaimana dimaksud dalam perjanjian ini, maupun yang termuat pada peraturan perusahaan PIHAK PERTAMA</li>
+	<li>PIHAK KEDUA wajib melakukan tugas / pekerjaan dengan baik dan penuh tanggung jawab serta menurut pada perintah atasannya/pengusaha</li>
+	<li>Apabila pihak kedua mengundurkan diri atas kemauan sendiri, maka harus mengajukan permohonan minimal 1 (satu) bulan sebelumnya. Jika tidak memenuhi ketentuan ini maka semua hak nya akan ditunda sesuai keputusan PIHAK PERTAMA.</li>
+</ol>
+<h3 align="center">Pasal 7 </h3>
+<p class="justify">Karyawan memahami dan menyetujui sepenuhnya bahwa Perusahaan dapat melakukan Pemutusan Hubungan Kerja sebelum masa Perjanjian Kerja ini berakhir apabila karyawan yang bersangkutan melakukan pelanggaran sesuai peraturan perusahaan, undang-undang ketenagakerjaan dan berurusan dengan pihak berwajib tanpa adanya kewajiban Perusahaan untuk membayar ganti rugi atau kompensasi dalam bentuk apapun, apabila : </p>
+<ol type="a">
+<li>Karyawan melanggar  peraturan Perusahaan setelah dilakukan pembinaan dan melakukan perbuatan-perbuatan yang menyebabkan kerugian bagi Perusahaan. </li>
+<li>Karyawan tersandung kasus pidana atau perdata.</li>
+<li>Karyawan mengundurkan diri atas kehendak sendiri dengan terlebih dahulu memberitahukan secara  tertulis 1 (satu) bulan sebelum tanggal pengunduran diri. </li>
+<li>Karyawan tidak mampu memenuhi standard kerja yang telah ditetapkan oleh Perusahaan, atasannya langsung dan/ atau petugas perusahaan yang ditunjuk.</li>
+<li>Karyawan meninggal dunia. </li>
+<li>Karyawan setuju bahwa PKWT ini berakhir demi hukum sesuai dengan jangka waktu yang ditentukan dan tidak ada tuntutan dikemudian hari.</li>
+<li>Melakukan penipuan, pencurian atau penggelapan barang milik perusahaan/ milik sesame pekerja didalam lingkungan perusahaan termasuk membantu atau kerja sama.</li>
+<li>Memberikan keterangan palsu atau yang dipalsukan sehingga merugikan perusahaan.</li>
+<li>Mabuk, meminum minuman keras memabukkan, memakai, membawa dan mengedarkan narkotika, psykotropika dan zat adiktif lainnya dilingkungan perusahaan.</li>
+<li>Melakukan perbuatan asusila atau perjudian dilingkungan kerja.</li>
+<li>Menyerang,menganiaya/memukul,mengancam, menghina, mencemarkan nama baik perusahaan, pengusaha, keluarga pengusaha, atasan, bawahan, atau teman kerja.</li>
+<li>Membujuk, memaksa pengusaha, keluarga pengusaha,atasan, bawahan atau rekan kerja untuk melakukan perbuatan yang bertentangan dengan peraturan perundang-undangan.</li>
+<li>Dengan sengaja merusak barang milik perusahaan, rekanan atau sesame pekerja.</li>
+<li>Dengan sengaja membiarkan teman sekerja/pengusaha dalam keadaan bahaya/terkena kecelakaan ditempat kerja.</li>
+<li>Membongkar atau membocorkan rahasia perusahaan atau mencemarkan nama baik pengusaha.</li>
+<li>Terbukti menerima suap / pemberian dalam bentuk apapun dari siapa saja untuk keuntungan diri sendiri, sehingga merugikan atau mengurangi keuntungan perusahaan.</li>
+<li>Membawa senjata tajam atau senjata api maupun benda-benda berbahaya kedalam lingkungan perusahaan.</li>
+<li>Memalsukan dokumen, tanda tangan, surat surat bukti,kwitansi kwitansi yang berhubungan dengan perusahaan yang mengakibatkan kerugian perusahaan.</li>
+<li>Membuat onar atau berkelahi ditempat kerja.</li>
+<li>Membuwa keluar barang barang milik perusahaan dalam bentuk apapun tanpa dilengkapi surat ijin keluar.</li>
+</ol>
+<h3 align="center">Pasal 8 </h3>
+<p class="justify">Force Majeure adalah peristiwa – peristiwa yang berada diluar kemampuan yang dapat mempengaruhi kinerja dan pelaksanaan pekerjaan.</p>
+<ol type="a">
+<li>Bencana Alam ( Gempa, Tanah Longsor, Badai dan Banjir.</li>
+<li>Perang, revolusi, makar, huru hara, pemberontakan, kerusuhan, kekacauan dan kebakaran.</li>
+<li>Keadaan memaksa yang dinyatakan oleh pemerintah daerah atau pusat.</li>
+</ol>
+<p class="justify">Apabila terjadi Force Majeure maka pihak yang lebih dahulu mengetahui wajib memberitahukan kepada pihak lainnya selambat – lambatnya dalam 14 ( empat belas hari ) setelah terjadi Force Majeure. 
+Perusahaan dan Karyawan dibebaskan dari tanggung jawab dan tidak ada tuntut menuntut dalam memenuhi kewajiban yang tercantum dalam perjanjian ini, yang disebabkan dan diakibatkan oleh kejadian diluar keluasaan masing – masing pihak yang digolongkan sebagai Froce Majeure.</p>
+<h3 align="center">Pasal 9 </h3>
+<p class="justify">Perjanjian Kerja ini tidak memberikan hak apapun kepada Karyawan untuk menjadi pekerja tetap kecuali atas penilaian atau persetujuan dari Perusahaan. Karyawan dengan ini menyatakan persetujuannya bahwa tidak ada hak-hak lain milik Karyawan selain dari yang tersebut dalam Perjanjian Kerja ini.
+Demikian Perjanjian Kerja  ini dibuat dalam rangkap 2 (dua) asli, masing – masing untuk Perusahaan dan Karyawan serta masing – masing mempunyai kekuatan hukum yang sama .</p>
+
+<br>
+<form>
+ <label for="lastName" class="last-name">Cikarang,</label>
+      <input id="lastName" type="date">
+</form>
+<br>
+<br>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Sign here</p>
+ <canvas id="signature-pad"></canvas>
+  <br>
+  <button id="clear">Clear</button>
+  <button id="save">Simpan</button>
+  <img id="signature-image" src="" alt="Tanda Tangan" style="display:none;">
+  
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  $img = $_POST['signature'];
+  $img = str_replace('data:image/png;base64,', '', $img);
+  $img = str_replace(' ', '+', $img);
+  $data = base64_decode($img);
+  $file = 'signatures/signature_' . uniqid() . '.png';
+
+  if (file_put_contents($file, $data)) {
+    echo "Tanda tangan berhasil disimpan di: " . $file;
+  } else {
+    echo "Gagal menyimpan tanda tangan.";
+  }
+}
+?>
+
+<button id="saveButton" onclick="window.print() ">Submit</button>
+
+<script>
+document.getElementById('saveButton').addEventListener('click', function() {
+      // Pilih elemen yang ingin di-convert (seluruh body)
+      const element = document.body;
+
+      // Opsi untuk html2pdf
+      const opt = {
+        margin:       1,
+        filename:     'halaman.pdf',
+        image:        { type: 'jpeg', quality: 0.98 },
+        html2canvas:  { scale: 2 },
+        jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+      };
+
+      // Konversi dan simpan
+      html2pdf().from(element).set(opt).save();
+    });
+var tw = new Date();
+if (tw.getTimezoneOffset() == 0) (a=tw.getTime() + ( 7 *60*60*1000))
+else (a=tw.getTime());
+tw.setTime(a);
+var tahun= tw.getFullYear ();
+var hari= tw.getDay ();
+var bulan= tw.getMonth ();
+var tanggal= tw.getDate ();
+var hariarray=new Array("Minggu,","Senin,","Selasa,","Rabu,","Kamis,","Jum'at,","Sabtu,");
+var bulanarray=new Array("Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","Nopember","Desember");
+document.getElementById("tanggalwaktu").innerHTML = hariarray[hari]+" "+tanggal+" "+bulanarray[bulan]+" "+tahun;
+
+var canvas = document.getElementById('signature-pad');
+    var signaturePad = new SignaturePad(canvas);
+
+    document.getElementById('clear').addEventListener('click', function() {
+      signaturePad.clear();
+    });
+
+    document.getElementById('save').addEventListener('click', function() {
+      if (signaturePad.isEmpty()) {
+        alert("Silakan buat tanda tangan terlebih dahulu.");
+      } else {
+        var dataURL = signaturePad.toDataURL('image/png');
+        document.getElementById('signature-image').src = dataURL;
+        document.getElementById('signature-image').style.display = 'block';
+
+        // Kirim data ke server (gunakan AJAX)
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "save_signature.php", true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                alert("Tanda tangan berhasil tersimpan"); // Pesan dari server (misalnya, "Tanda tangan tersimpan")
+            }
+        };
+        xhr.send("signature=" + encodeURIComponent(dataURL));
+      }
+    });
+</script>
+<hr>
+<footer>
+ <p><center>&copy; 2025 PT. Federasi Jaya Mandiri. All rights reserved.</center></p>
+</footer>
+</body>
+</html>
+
+
+
+
+
+
+
+
+

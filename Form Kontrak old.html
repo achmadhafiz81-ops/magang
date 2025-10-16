@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PT. FEDERASI JAYA MANDIRI </title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/signature_pad@4.1.6/dist/signature_pad.umd.min.js"></script>
+  <style>
+    :root{--primary:#0d6efd;--muted:#f4f6f8;--ink:#111;}
+    *{box-sizing:border-box}
+    body{font-family:Arial,Helvetica,sans-serif;margin:0;background:#fff;color:#222}
+    header{padding:16px 20px;border-bottom:1px solid #e6e8eb;position:sticky;top:0;background:#fff;z-index:10}
+    h1{font-size:20px;margin:0}
+    .container{max-width:980px;margin:22px auto;padding:0 16px}
+    .tabs{display:flex;gap:8px;flex-wrap:wrap}
+    .tab{padding:10px 14px;border:1px solid #d6d8db;background:#fff;border-radius:8px;cursor:pointer}
+    .tab.active{background:var(--primary);color:#fff;border-color:var(--primary)}
+    .card{background:#fff;border:1px solid #e6e8eb;border-radius:12px;padding:16px;margin-top:14px}
+    label{font-weight:600;display:block;margin:12px 0 6px}
+    input,textarea,select{width:100%;padding:10px;border:1px solid #cfd3d7;border-radius:8px}
+    .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+    button{background:var(--primary);color:#fff;border:none;border-radius:10px;padding:10px 14px;cursor:pointer}
+    button.secondary{background:#0aa06e}
+    button.muted{background:#0aa06e}
+    .muted{color:#fff}
+
+    /* Signature pad */
+    .sig-wrap{display:flex;flex-direction:column;gap:8px;align-items:flex-start}
+    .sig-canvas{border:2px solid #0a0a0a;border-radius:8px;width:100%;max-width:380px;height:120px}
+    .sig-actions{display:flex;gap:8px}
+
+    /* Contract render */
+    #result{display:none}
+    .page{padding:20px;border:1px solid #e6e8eb;border-radius:12px;background:#fff;margin-bottom:24px}
+    .pbreak{page-break-after:always;margin-bottom:32px}
+    h2,h3,h4{text-align:center}
+
+    /* Signature block inside contract */
+    .sign-table{width:100%;margin-top:32px;text-align:center;border-collapse:collapse}
+    .sign-td{width:50%;vertical-align:top;padding:8px}
+    .sign-title{font-weight:700;margin-bottom:12px}
+    .sig-box{width:180px;height:80px;border-bottom:1px solid #000;margin:0 auto;display:flex;align-items:center;justify-content:center}
+    .sig-img{max-height:70px}
+    .under-name{margin-top:6px}
+
+    .inline{display:inline-block}
+    .copybox{display:flex;gap:8px;align-items:center}
+    .copybox input{flex:1}
+
+    @media (max-width:680px){.row{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+<header>
+  <center>
+    <img src="fom.jpg" alt="logo pt" width="200" height="150">
+    <h1>Perjanjian Kerja Waktu Tertentu</h1>
+    <h5>No: <span id="number"></span>/ HR-FJM / I / <span id="tahun"></span></h5>
+  </center>  
+  <hr>
+</header>
+
+<div class="container">
+  <div class="tabs">
+    <div class="tab active" id="tab-hrd" onclick="switchMode('hrd')">Pihak Pertama</div>
+    <div class="tab" id="tab-karyawan" onclick="switchMode('karyawan')">Pihak Kedua</div>
+  </div>
+
+
+  <section class="canvas" id="hrd-panel">
+    <h3>Input Data Karyawan (HRD)</h3>
+    <div class="row">
+      <div>
+        <label>Nama Karyawan</label>
+        <input id="nama" placeholder="Nama lengkap" />
+      </div>
+      <div>
+        <label>Jabatan</label>
+        <input id="jabatan" placeholder="Jabatan" />
+      </div>
+	   <div>
+		<label>Bagian
+		<select id = "bagian">
+		<option value = "">---Bagian---</option>
+		<option>IT</option>
+          <option>GENERAL AFFAIR</option>
+          <option>PRODUKSI</option>
+          <option>MARKETING</option>
+          <option>PURCHASING</option>
+          <option>ACCOUNTING</option>
+          <option>INVENTORY</option>
+          <option>QUALITY</option>
+          <option>MOLDSHOP</option>
+          <option>MAINTENANCE</option>
+          <option>PPIC</option>
+          <option>QMR</option>
+          <option>HRD</option>
+		  </select>
+		</label>
+	  </div>
+      <div>
+        <label>Tanggal Mulai Kontrak</label>
+        <input id="mulai" type="date" />
+      </div>
+      <div>
+        <label>Tanggal Berakhir Kontrak</label>
+        <input id="akhir" type="date" />
+      </div>
+      <div>
+        <label>NIK KTP</label>
+        <input id="nik" type="number" />
+      </div>
+      <div>
+        <label>Nomor Telepon</label>
+        <input id="telp" type="number" />
+      </div>
+      <div>
+        <label>Alamat</label>
+        <input id="alamat" />
+      </div>
+		<div>
+        <label>Nomor Surat</label>
+        <input id="surat" type="number" />
+      </div>
+      <div>
+        <label>Tempat/Tanggal Lahir</label>
+        <input id="ttl" type="date" />
+      </div>
+	  <div>
+		<label>Gaji (Rp):</label>
+		<input id="gaji" type="text" oninput="formatRupiah(this)" />
+	  </div>
+    </div>
+
+    <div class="sig-wrap" style="margin-top:12px">
+      <label>Tanda Tangan (Pihak Pertama)</label>
+      <canvas id="sig-hrd" class="sig-canvas"></canvas>
+      <div class="sig-actions">
+        <button type="button" class="muted" onclick="clearSig(hrdPad)">Hapus TTD</button>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button type="button" onclick="previewDraft()">Preview Draf</button>
+      <button type="button" class="secondary" onclick="generateEmployeeLink()">Kirim ke Pihak Kedua (buat tautan)</button>
+    </div>
+
+    <div id="link-area" class="card" style="display:none">
+      <div class="copybox">
+        <input id="draft-link" readonly>
+        <button class="muted" type="button" onclick="copyDraftLink()">Copy</button>
+      </div>
+      <small class="muted">Bagikan tautan ini ke karyawan untuk menandatangani. Tautan berisi data kontrak (terenkripsi base64 di hash URL, tidak terkirim ke server).</small>
+    </div>
+  </section>
+
+  
+  <section class="card" id="karyawan-panel" style="display:none">
+    <h3>Tanda Tangan Pihak Kedua</h3>
+    <p class="muted">Data kontrak di bawah ini sudah diisi HRD. Silakan cek dan tanda tangani.</p>
+
+    <div class="sig-wrap">
+      <label>Tanda Tangan ( Pihak kedua )</label>
+      <canvas id="sig-emp" class="sig-canvas"></canvas>
+      <div class="sig-actions">
+        <button type="button" class="muted" onclick="clearSig(empPad)">Hapus TTD</button>
+        <button type="button" onclick="finalizeAndDownload()">Selesai & Unduh PDF</button>
+      </div>
+    </div>
+  </section>
+
+  
+  <section id="result" class="legal">
+    <div id="content">
+      <div class="page pbreak">
+        <p style="text-align:center">No: 3/ HR-FJM / I / <span id="tahun"></span></p>
+        <hr>
+        <center><img src="fom.jpg" alt="logo pt" width="200" height="150"></center>
+        <h2>PT. FEDERASI JAYA MANDIRI</h2>
+        <h3>PERJANJIAN KERJA WAKTU TERTENTU</h3>
+        <p>Pada hari ini, <u><span id="tanggalwaktu"></span></u> dibuat perjanjian kerja antara:</p>
+                  <div>
+                     <h4><u><b>PIHAK PERTAMA</b></u></h4>
+                             <table>
+                                  <tr>
+                                  <td class="label-cell"><b>Nama</b></td>
+                                  <td class="colon-cell"><b>:</b></td>
+                                  <td class="value-cell"><b>Lina Pratiwi</b></td>
+                                   </tr>
+                                   <tr>
+                                   <td class="label-cell"><b>Jabatan</b></td>
+                                   <td class="colon-cell"><b>:</b></td>
+                                   <td class="value-cell"><b>Direktur</b></td>
+                                   </tr>
+                                   <tr>
+                                   <td class="label-cell"><b>Alamat</b></td>
+                                   <td class="colon-cell"><b>:</b></td>
+                                   <td class="value-cell"><b>Cibarusah Indah 2 Blok E 24 No.13, Cibarusah, Bekasi.</b></td>
+                                   </tr>
+                             </table>
+                  </div>
+        <div>                       
+        <h4><u><b>PIHAK KEDUA</b></u></h4>
+            <p><b>Karyawan:</b> <span id="r-nama"></span></p>
+            <p><b>Jabatan:</b> <span id="r-jabatan"></span></p>
+            <p><b>Masa Kontrak:</b> <span id="r-mulai"></span> s/d <span id="r-akhir"></span></p>
+            <div id="detail-karyawan"></div>
+      </div>
+
+       <div class="page" style="text-align:justify">
+        <h3>Pasal 1</h3>
+        <p>Jangka waktu Perjanjian  Kerja ini adalah selama  12 ( Dua Belas )  bulan, terhitung mulai tanggal  16 January 2025  sampai dengan tanggal 15 January 2026. </p>
+       
+        <h3>Pasal 2</h3>
+        <p>Pekerja akan bekerja pada di PT. Federasi Jaya Mandiri Di bagian:</p>
+         <span id="out-bagian"></span>
+         
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+		  <br>
+		  <br>
+		  <br>
+		   <br>
+		   <br>
+        <h3>Pasal 3</h3>
+        <p>Tugas, wewenang dan tanggung jawab Karyawan akan diatur secara tersendiri oleh Kepala Departemen yang bersangkutan. Perincian tugas, wewenang dan tanggung jawab ( Job Description ) yang diberikan, akan merupakan bagian yang tidak terpisah dari kontrak kerja ini.</p>
+
+        <h3>Pasal 4</h3>
+        <p>Jumlah jam dan hari kerja Karyawan adalah 8 ( delapan ) jam per hari dan 5 ( lima ) hari per minggu, atau jadwal yang akan di atur secara tersendiri oleh Kepala Departemen yang bersangkutan dan akan merupakan bagian yang tidak terpisahkan dari kontrak kerja ini. Apabila diperlukan dan diminta oleh pihak Perusahaan, Karyawan bersedia untuk melaksanakan kerja lembur dengan persyaratan yang sesuai dengan kesepakatan dan peraturan Pemerintah yang berlaku.</p>
+
+        <h3><strong>Pasal 5</strong></h3>
+        <p style="text-align: justify;">Selama bekerja pada masa Perjanjian Kerja ini, Karyawan berhak atas upah yang pengaturannya disepakati sebagai berikut :</p>
+        <ol type="a">
+          <li>Upah pokok sebesar <span id="out-gaji">Rp 0</span> / Bulan</li>
+	<li>Tunjangan hari raya yang dibayarkan kepada PIHAK KEDUA  sesuai dengan kebijakan bagi pekerja waktu tertentu yang berlaku.</li>
+	<li>Perusahaan akan membayar upah pekerja setiap akhir bulan.</li>
+</ol>
+
+                            <h3>Pasal 6</h3>
+                             <p>Karyawan wajib tunduk pada peraturan-peraturan kerja yang dikeluarkan oleh Perusahaan dan/ atau pimpinan/ atasan langsung Karyawan, baik secara tertulis maupun lisan.</p>
+                              <ol type="a">
+                                 <li>PIHAK KEDUA wajib melaksanakan segala ketentuan sebagaimana dimaksud dalam perjanjian ini, maupun yang termuat pada peraturan perusahaan PIHAK PERTAMA</li>
+	                               <li>PIHAK KEDUA wajib melakukan tugas / pekerjaan dengan baik dan penuh tanggung jawab serta menurut pada perintah atasannya/pengusaha</li>
+	                               <li>Apabila pihak kedua mengundurkan diri atas kemauan sendiri, maka harus mengajukan permohonan minimal 1 (satu) bulan sebelumnya. Jika tidak memenuhi ketentuan ini maka semua hak nya akan ditunda sesuai keputusan PIHAK PERTAMA.</li>
+                              </ol>
+
+                                 <h3>Pasal 7</h3>
+                                 <p>Karyawan memahami dan menyetujui sepenuhnya bahwa Perusahaan dapat melakukan Pemutusan Hubungan Kerja sebelum masa Perjanjian Kerja ini berakhir apabila karyawan yang bersangkutan melakukan pelanggaran sesuai peraturan perusahaan, undang-undang ketenagakerjaan dan berurusan dengan pihak berwajib tanpa adanya kewajiban Perusahaan untuk membayar ganti rugi atau kompensasi dalam bentuk apapun, apabila : </p>
+                                 <br>
+                                 <br>
+                                 <br>
+                                 <br>
+                              <ol type="a">
+                                <li>Karyawan melanggar  peraturan Perusahaan setelah dilakukan pembinaan dan melakukan perbuatan-perbuatan yang menyebabkan kerugian bagi Perusahaan. </li>
+                                <li>Karyawan tersandung kasus pidana atau perdata.</li>
+                                <li>Karyawan mengundurkan diri atas kehendak sendiri dengan terlebih dahulu memberitahukan secara  tertulis 1 (satu) bulan sebelum tanggal pengunduran diri. </li>
+                                <li>Karyawan tidak mampu memenuhi standard kerja yang telah ditetapkan oleh Perusahaan, atasannya langsung dan/ atau petugas perusahaan yang ditunjuk.</li>
+                                <li>Karyawan meninggal dunia. </li>
+                                <li>Karyawan setuju bahwa PKWT ini berakhir demi hukum sesuai dengan jangka waktu yang ditentukan dan tidak ada tuntutan dikemudian hari.</li>
+                                <li>Melakukan penipuan, pencurian atau penggelapan barang milik perusahaan/ milik sesame pekerja didalam lingkungan perusahaan termasuk membantu atau kerja sama.</li>
+                                <li>Memberikan keterangan palsu atau yang dipalsukan sehingga merugikan perusahaan.</li>
+                                <li>Mabuk, meminum minuman keras memabukkan, memakai, membawa dan mengedarkan narkotika, psykotropika dan zat adiktif lainnya dilingkungan perusahaan.</li>
+                                <li>Melakukan perbuatan asusila atau perjudian dilingkungan kerja.</li>
+                                <li>Menyerang,menganiaya/memukul,mengancam, menghina, mencemarkan nama baik perusahaan, pengusaha, keluarga pengusaha, atasan, bawahan, atau teman kerja.</li>
+                                <li>Membujuk, memaksa pengusaha, keluarga pengusaha,atasan, bawahan atau rekan kerja untuk melakukan perbuatan yang bertentangan dengan peraturan perundang-undangan.</li>
+                                <li>Dengan sengaja merusak barang milik perusahaan, rekanan atau sesame pekerja.</li>
+                                <li>Dengan sengaja membiarkan teman sekerja/pengusaha dalam keadaan bahaya/terkena kecelakaan ditempat kerja.</li>
+                                <li>Membongkar atau membocorkan rahasia perusahaan atau mencemarkan nama baik pengusaha.</li>
+                                <li>Terbukti menerima suap / pemberian dalam bentuk apapun dari siapa saja untuk keuntungan diri sendiri, sehingga merugikan atau mengurangi keuntungan perusahaan.</li>
+                                <li>Membawa senjata tajam atau senjata api maupun benda-benda berbahaya kedalam lingkungan perusahaan.</li>
+                                <li>Memalsukan dokumen, tanda tangan, surat surat bukti,kwitansi kwitansi yang berhubungan dengan perusahaan yang mengakibatkan kerugian perusahaan.</li>
+                                <li>Membuat onar atau berkelahi ditempat kerja.</li>
+                                <li>Membuwa keluar barang barang milik perusahaan dalam bentuk apapun tanpa dilengkapi surat ijin keluar.</li>
+                              </ol>
+                                                           
+                            <h3>Pasal 8 </h3>
+                                <p>Force Majeure adalah peristiwa – peristiwa yang berada diluar kemampuan yang dapat mempengaruhi kinerja dan pelaksanaan pekerjaan.</p>
+                              <ol type="a">
+                                <li>Bencana Alam ( Gempa, Tanah Longsor, Badai dan Banjir ).</li>
+                                <li>Perang, revolusi, makar, huru hara, pemberontakan, kerusuhan, kekacauan dan kebakaran.</li>
+                                <li>Keadaan memaksa yang dinyatakan oleh pemerintah daerah atau pusat.</li>
+                              </ol>
+                              <br>
+                              <br>
+                              <br>
+                              <br>
+                                <p>Apabila terjadi Force Majeure maka pihak yang lebih dahulu mengetahui wajib memberitahukan kepada pihak lainnya selambat – lambatnya dalam 14 ( empat belas hari ) setelah terjadi Force Majeure. Perusahaan dan Karyawan dibebaskan dari tanggung jawab dan tidak ada tuntut menuntut dalam memenuhi kewajiban yang tercantum dalam perjanjian ini, yang disebabkan dan diakibatkan oleh kejadian diluar keluasaan masing – masing pihak yang digolongkan sebagai Froce Majeure.</p>
+                                
+                                <h3>Pasal 9 </h3>
+                                <p>Perjanjian Kerja ini tidak memberikan hak apapun kepada Karyawan untuk menjadi pekerja tetap kecuali atas penilaian atau persetujuan dari Perusahaan. Karyawan dengan ini menyatakan persetujuannya bahwa tidak ada hak-hak lain milik Karyawan selain dari yang tersebut dalam Perjanjian Kerja ini. Demikian Perjanjian Kerja  ini dibuat dalam rangkap 2 (dua) asli, masing – masing untuk Perusahaan dan Karyawan serta masing – masing mempunyai kekuatan hukum yang sama .</p>
+        <br>
+        <br>
+        <p>Demikian Perjanjian Kerja  ini dibuat dalam rangkap 2 (dua) asli, masing – masing untuk Perusahaan dan Karyawan serta masing – masing mempunyai kekuatan hukum yang sama .</p>
+       </div> 
+        <table class="sign-table">
+          <tr>
+            <td class="sign-td">
+              <div class="sign-title">Pihak Pertama</div>
+              <div class="sig-box"><img id="img-hrd" class="sig-img" /></div>
+              <div class="under-name">( PT. FEDERASI JAYA MANDIRI )</div>
+            </td>
+            <td class="sign-td">
+              <div class="sign-title">Pihak Kedua</div>
+              <div class="sig-box"><img id="img-emp" class="sig-img" /></div>
+              <div class="under-name">( <span id="r-nama2"></span> )</div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <div class="actions"><button class="muted" type="button" onclick="downloadPDF()">Unduh PDF</button></div>
+  </section>
+</div>
+
+<script>
+  // —— Utilities ——
+  const $ = (sel)=>document.querySelector(sel);
+  const fmtDate = (v)=> v? new Date(v).toISOString().slice(0,10): '';
+  const enc = (obj)=> btoa(unescape(encodeURIComponent(JSON.stringify(obj))));
+  const dec = (s)=> JSON.parse(decodeURIComponent(escape(atob(s))));
+
+  // —— Signature pads ——
+  let hrdPad, empPad;
+  function initPads(){
+    const hrdCanvas = document.getElementById('sig-hrd');
+    hrdPad = new SignaturePad(hrdCanvas);
+    const empCanvas = document.getElementById('sig-emp');
+    empPad = new SignaturePad(empCanvas);
+  }
+  function clearSig(pad){ pad && pad.clear(); }
+
+  // —— Mode switching ——
+  function switchMode(mode){
+    document.getElementById('tab-hrd').classList.toggle('active', mode==='hrd');
+    document.getElementById('tab-karyawan').classList.toggle('active', mode==='karyawan');
+    document.getElementById('hrd-panel').style.display = (mode==='hrd')?'block':'none';
+    document.getElementById('karyawan-panel').style.display = (mode==='karyawan')?'block':'none';
+  }
+
+  // —— Load from URL hash if present ——
+  function loadFromHash(){
+    const hash = location.hash || '';
+    const m = /draft=(.+)$/i.exec(hash);
+    if(m){
+      const data = dec(m[1]);
+      // Fill contract render now
+      fillContract(data);
+      if(data.ttd_hrd) document.getElementById('img-hrd').src = data.ttd_hrd;
+      // Switch to employee mode for signing
+      switchMode('karyawan');
+      document.getElementById('result').style.display = 'block';
+	  
+	  // Tambah biar HRD tab terkunci
+		document.getElementById('tab-hrd').style.pointerEvents = 'none';
+		document.getElementById('tab-hrd').style.opacity = '0.5';
+    
+	}
+  }
+
+  // —— Build object from HRD form ——
+  function readHRDForm(){
+    const d = {
+      nama: document.getElementById('nama').value.trim(),
+      jabatan: document.getElementById('jabatan').value.trim(),
+	  bagian: document.getElementById('bagian').value.trim(),
+      mulai: document.getElementById('mulai').value,
+      akhir: document.getElementById('akhir').value,
+      nik: document.getElementById('nik').value.trim(),
+	  surat: document.getElementById('surat').value.trim(),
+      telp: document.getElementById('telp').value.trim(),
+      alamat: document.getElementById('alamat').value.trim(),
+      ttl: document.getElementById('ttl').value,
+	  gaji: document.getElementById('gaji').value.trim(),
+      ttd_hrd: hrdPad && !hrdPad.isEmpty() ? hrdPad.toDataURL('image/png') : ''
+    };
+    return d;
+  }
+
+  // —— Fill contract HTML ——
+  function fillContract(d){
+    document.getElementById('tahun').textContent = new Date().getFullYear();
+    const tw = new Date();
+    const hari = ['Minggu,','Senin,','Selasa,','Rabu,','Kamis,','Jum\'at,','Sabtu,'][tw.getDay()];
+    const bulan = ['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'][tw.getMonth()];
+    document.getElementById('tanggalwaktu').textContent = `${hari} ${tw.getDate()} ${bulan} ${tw.getFullYear()}`;
+
+    document.getElementById('r-nama').textContent = d.nama || '-';
+    document.getElementById('r-nama2').textContent = d.nama || '-';
+    document.getElementById('r-jabatan').textContent = d.jabatan || '-';
+    document.getElementById('r-mulai').textContent = fmtDate(d.mulai);
+    document.getElementById('r-akhir').textContent = fmtDate(d.akhir);
+
+    document.getElementById('detail-karyawan').innerHTML = `
+      <p><b>NIK KTP:</b> ${d.nik||'-'}</p>
+      <p><b>Tempat/Tanggal Lahir:</b> ${fmtDate(d.ttl)||'-'}</p>
+      <p><b>Nomor Telepon:</b> ${d.telp||'-'}</p>
+      <p><b>Alamat:</b> ${d.alamat||'-'}</p>`;
+	  
+	 // tampilkan bagian (Pasal 2)
+  document.getElementById('out-bagian').textContent = d.bagian || '-';
+	  
+	// tampilkan gaji (jika ada), jika kosong tampil Rp 0
+    document.getElementById('out-gaji').textContent = d.gaji && d.gaji.length ? d.gaji : 'Rp 0';
+  }
+  
+ // Format rupiah input
+  function formatRupiah(el){
+    let angka = el.value.replace(/[^,\d]/g, "");
+    let split = angka.split(",");
+    let sisa = split[0].length % 3;
+    let rupiah = split[0].substr(0, sisa);
+    let ribuan = split[0].substr(sisa).match(/\d{3}/gi);
+
+    if(ribuan){
+      let separator = sisa ? "." : "";
+      rupiah += separator + ribuan.join(".");
+    }
+    rupiah = split[1] != undefined ? rupiah + "," + split[1] : rupiah;
+    el.value = rupiah ? "Rp " + rupiah : "";
+  }
+
+  // —— Preview draft in page ——
+  function previewDraft(){
+    const data = readHRDForm();
+    if(!data.nama){ alert('Nama karyawan wajib diisi'); return; }
+    fillContract(data);
+    if(data.ttd_hrd) document.getElementById('img-hrd').src = data.ttd_hrd; else document.getElementById('img-hrd').removeAttribute('src');
+    document.getElementById('img-emp').removeAttribute('src');
+    document.getElementById('result').style.display = 'block';
+    window.scrollTo({top:document.getElementById('result').offsetTop-10, behavior:'smooth'});
+  }
+
+  // Generate link for employee (include gaji)
+  function generateEmployeeLink(){
+    const data = readHRDForm(); // ambil semua data termasuk gaji
+    if(!data.nama){ alert('Nama karyawan wajib diisi'); return; }
+    if(!data.ttd_hrd){
+      if(!confirm('TTD HRD belum diisi. Lanjutkan tanpa TTD?')) return;
+    }
+    const link = `${location.origin}${location.pathname}#draft=${enc(data)}`;
+    const el = document.getElementById('link-area');
+    el.style.display = 'block';
+    document.getElementById('draft-link').value = link;
+    // preview agar user lihat hasil sebelum copy link
+    fillContract(data);
+    if(data.ttd_hrd) document.getElementById('img-hrd').src = data.ttd_hrd;
+    document.getElementById('result').style.display = 'block';
+  }
+  
+  function copyDraftLink(){
+    const inp = document.getElementById('draft-link');
+    inp.select(); inp.setSelectionRange(0, 99999);
+    document.execCommand('copy');
+  }
+
+  // Finalize by employee
+  function finalizeAndDownload(){
+    if(!empPad || empPad.isEmpty()){ alert('Mohon tanda tangani terlebih dahulu.'); return; }
+    const hash = location.hash || '';
+    const m = /draft=(.+)$/i.exec(hash);
+    if(!m){ alert('Data draf tidak ditemukan.'); return; }
+    const data = dec(m[1]);
+    const empURL = empPad.toDataURL('image/png');
+    // put signatures to render
+    if(data.ttd_hrd) document.getElementById('img-hrd').src = data.ttd_hrd;
+    document.getElementById('img-emp').src = empURL;
+    // ensure gaji shown (in case)
+    document.getElementById('out-gaji').textContent = data.gaji || document.getElementById('out-gaji').textContent;
+    downloadPDF();
+  }
+
+  // Download PDF
+  function downloadPDF(){
+    const element = document.getElementById('content');
+    const safeName = (document.getElementById('r-nama').textContent||'').replace(/\s+/g,'_').replace(/[^a-zA-Z0-9_\-]/g,'');
+    const opt = { margin: 0.5, filename: `Kontrak_Kerja_${safeName || 'karyawan'}.pdf`, image: { type: 'jpeg', quality: 0.98 }, html2canvas: { scale: 2, useCORS: true, scrollY: 0 }, jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }, pagebreak: { mode: ['css','legacy'] } };
+    html2pdf().set(opt).from(element).save();
+  }
+
+  // —— Init ——
+  window.addEventListener('load', ()=>{ initPads(); loadFromHash(); });
+</script>
+</body>
+</html>
+
+

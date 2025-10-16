@@ -1,0 +1,70 @@
+.tombol {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 12px;
+}
+
+.tombol:hover {
+  background-color: #3e8e41;
+}
+.container {
+    display: flex;
+    justify-content: center;
+	}
+* {
+  box-sizing: border-box;
+}
+form {
+  padding: 1em;
+  background: #f9f9f9;
+  border: 0px solid #c1c1c1;
+  margin-top: 0rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 1em;
+}
+form input {
+  margin-bottom: 0rem;
+  background: #fff;
+  border: 0px solid #9c9c9c;
+}
+form button {
+  background: lightgrey;
+  padding: 0.7em;
+  border: 0;
+}
+form button:hover {
+  background: gold;
+}
+
+label {
+  text-align: right;
+  display: block;
+  padding: 0.5em 1.5em 0.5em 0;
+}
+
+input {
+  width: 100%;
+  padding: 0.7em;
+  margin-bottom: 0.5rem;
+}
+form {
+    display: grid;
+    grid-template-columns: 200px 10fr;
+    grid-gap: 10px;
+}
+
+ #signature-pad {
+    border: 1px solid black;
+    width: 300px;
+    height: 100px;
+  }
