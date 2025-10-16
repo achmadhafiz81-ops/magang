@@ -474,9 +474,7 @@ function generateNomorKontrak(){
   function generateEmployeeLink(){
     const data = readHRDForm(); // ambil semua data termasuk gaji
     if(!data.nama){ alert('Nama karyawan wajib diisi'); return; }
-    if(!data.ttd_hrd){
-      if(!confirm('TTD HRD belum diisi. Lanjutkan tanpa TTD?')) return;
-    }
+    
 	  if(!data.no_kontrak){
     data.no_kontrak = generateNomorKontrak();
   }
@@ -543,6 +541,7 @@ function generateNomorKontrak(){
 </script>
 	</body>
 </html>
+
 
 
 
