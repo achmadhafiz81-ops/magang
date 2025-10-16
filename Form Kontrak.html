@@ -141,7 +141,10 @@
 
     <div class="sig-wrap" style="margin-top:12px">
       <label>Tanda Tangan (Pihak Pertama)</label>
-      <img src="hrd.png" alt="logs pt" width="150">
+      <canvas id="sig-hrd" class="sig-canvas"></canvas>
+      <div class="sig-actions">
+        <button type="button" class="muted" onclick="clearSig(hrdPad)">Hapus TTD</button>
+      </div>
     </div>
 
     <div class="actions">
@@ -287,7 +290,7 @@
                                     <tr>
                                     <td class="sign-td">
                                     <div class="sign-title">Pihak Pertama</div>
-                                    <div class="sig-box"><img src="hrd.png" alt="logs pt" width="150"></div>
+                                    <div class="sig-box"><img id="img-hrd" class="sig-img" /></div>
                                     <div class="under-name">( Ir. Teguh Nurdin )</div>
                                     </td>
                                     <td class="sign-td">
@@ -474,7 +477,9 @@ function generateNomorKontrak(){
   function generateEmployeeLink(){
     const data = readHRDForm(); // ambil semua data termasuk gaji
     if(!data.nama){ alert('Nama karyawan wajib diisi'); return; }
-    
+    if(!data.ttd_hrd){
+      if(!confirm('TTD HRD belum diisi. Lanjutkan tanpa TTD?')) return;
+    }
 	  if(!data.no_kontrak){
     data.no_kontrak = generateNomorKontrak();
   }
@@ -541,11 +546,6 @@ function generateNomorKontrak(){
 </script>
 	</body>
 </html>
-
-
-
-
-
 
 
 
